@@ -1,3 +1,16 @@
+
+require("appdynamics").profile({
+	 controllerHostName: 'ada201912270634325.saas.appdynamics.com',
+	 controllerPort: 443,
+	 
+// If SSL, be sure to enable the next line
+controllerSslEnabled: true,
+accountName: 'ada201912270634325',
+accountAccessKey: '5is03mv5y1jc',
+applicationName: 'Messages',
+tierName: 'Messages',
+nodeName: 'process' // The controller will automatically append the node name with a unique number
+});
 import 'dotenv/config';
 import cors from 'cors';
 import bodyParser from 'body-parser';
@@ -28,7 +41,7 @@ app.use((req, res, next) => {
 app.use('/session', routes.session);
 app.use('/users', routes.user);
 app.use('/messages', routes.message);
-
+app.use('/error', routes.error);
 // Start
 
 app.listen(process.env.PORT, () =>
